@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'You have ' + ${mailContent.getAgeLeft()}  + ' years left until you can retire.'"></p>
+<p th:text="'It\'s' + ${mailContent.getCurrentYear()} +', so you can retire in' + ${mailContent.getYearToRetire()} + '.'"></p>
+</body>
+</html>
