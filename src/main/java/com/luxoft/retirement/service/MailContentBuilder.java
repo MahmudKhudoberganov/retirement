@@ -3,6 +3,7 @@ package com.luxoft.retirement.service;
 import com.luxoft.retirement.dto.MailContentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -10,7 +11,7 @@ import org.thymeleaf.context.Context;
 @AllArgsConstructor
 public class MailContentBuilder {
 
-  private final TemplateEngine templateEngine;
+  private final ITemplateEngine templateEngine;
 
   public String build(MailContentDto contentDto) {
     Context context = new Context();

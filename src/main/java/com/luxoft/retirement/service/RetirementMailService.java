@@ -1,6 +1,8 @@
 package com.luxoft.retirement.service;
 
 import com.luxoft.retirement.configuration.RetirementProperties;
+import com.luxoft.retirement.converter.MailContentConverter;
+import com.luxoft.retirement.converter.RetirementConverter;
 import com.luxoft.retirement.dto.MailContentDto;
 import com.luxoft.retirement.model.Retirement;
 import lombok.AllArgsConstructor;
@@ -17,18 +19,16 @@ public class RetirementMailService {
 
   private final RetirementProperties retirementProperties;
 
+  private final MailContentConverter mailContentConverter;
+
   private final MailContentBuilder mailContentBuilder;
 
   private final MailService mailService;
 
+
   @Async
   public void sendMail(Retirement retirement, String email) {
-    MailContentDto mailContent = MailContentDto.builder()
-        .ageLeft(retirement.getAgeLeft())
-        .currentYear(Calendar.getInstance().get(Calendar.YEAR))
-        .yearToRetire(retirement.getYearToRetire())
-        .build();
-
+    MailContentDto mailContent = mailContentConverter.convert(retirement);
     String template = mailContentBuilder.build(mailContent);
     mailService.sendMail(retirementProperties.getSubject(), email, template);
   }
