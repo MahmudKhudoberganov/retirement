@@ -7,9 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -19,13 +17,12 @@ class RetirementYearCalculatorServiceTest {
   private RetirementYearCalculatorService retirementYearCalculatorService;
 
   @Test
-  void calculateYear() {
+  public void Given_age_left_with_value_40_should_return_2061() {
     int ageLeft = 40;
 
-    int yearToRetire = retirementYearCalculatorService.calculateYear(ageLeft);
+    int result = retirementYearCalculatorService.calculateYear(ageLeft);
 
-    int expectedYear = LocalDate.now().getYear() + ageLeft;
-    assertEquals(expectedYear, yearToRetire);
+    assertEquals(2061, result);
   }
 
 }
